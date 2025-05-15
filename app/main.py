@@ -7,13 +7,18 @@ from fastapi.middleware.cors import CORSMiddleware
 #since Iam using the alembic not really needed
 #model.Base.metadata.create_all(bind=engine) #initializing db when running the main
 
-origins = ['https://www.google.com']
+origins = ['https://www.google.com',
+           "http://localhost.tiangolo.com",
+            "https://localhost.tiangolo.com",
+            "http://localhost",
+            "http://localhost:8080",
+        ]
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_redentials=True,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
 )

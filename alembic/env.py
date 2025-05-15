@@ -1,5 +1,5 @@
 from logging.config import fileConfig
-
+from urllib.parse import quote_plus
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
@@ -13,8 +13,12 @@ db_host = os.getenv('DB_HOST')
 db_name = os.getenv('DB_NAME')
 db_user = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASSWORD')
+#encoding the password for Linux
+db_password_encoded = quote_plus(db_password)
+
+
 #Build SQLALCHEMY_DATABASE_URL
-SQLALCHEMY_DATABASE_URL = f'postgresql://{db_user}:{db_password}@{db_host}/{db_name}'
+SQLALCHEMY_DATABASE_URL = f'postgresql://{db_user}:{db_password_encoded}@{db_host}/{db_name}'
 
 
 
