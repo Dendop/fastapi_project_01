@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 from urllib.parse import quote_plus
 
-load_dotenv()
+load_dotenv(dotenv_path='/home/dendop/.env') #for prod path
 
 
 db_host = os.getenv('DB_HOST')
