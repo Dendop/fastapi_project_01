@@ -13,6 +13,7 @@ def vote(vote: schema.Vote, db: Session = Depends(get_db), current_user : int = 
     vote_query = db.query(model.Votes).filter(model.Votes.post_id == vote.post_id, model.Votes.user_id == current_user.id)
     found_vote = vote_query.first()
     post = db.query(model.Post).filter(model.Post.id == vote.post_id).first()
+    
     if not post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post has not been found.")
     
