@@ -5,7 +5,7 @@ from .routers import post, user, authentication, vote
 from fastapi.middleware.cors import CORSMiddleware
 
 #since Iam using the alembic not really needed
-#model.Base.metadata.create_all(bind=engine) #initializing db when running the main
+model.Base.metadata.create_all(bind=engine) #initializing db when running the main
 
 origins = ['https://www.google.com',
            "http://localhost.tiangolo.com",
