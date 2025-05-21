@@ -8,7 +8,9 @@ from app.model import Base
 from dotenv import load_dotenv
 import os
 
-load_dotenv(dotenv_path='/home/dendop/.env') # for prod VM path
+if not load_dotenv():
+    load_dotenv(dotenv_path='/home/dendop/.env') # for prod VM path
+    
 db_host = os.getenv('DB_HOST')
 db_name = os.getenv('DB_NAME')
 db_user = os.getenv('DB_USER')
