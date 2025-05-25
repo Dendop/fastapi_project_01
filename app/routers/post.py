@@ -41,7 +41,7 @@ def create_posts(post: schema.PostBase, db: Session = Depends(get_db), current_u
     return new_post
 
 @router.get('/{id}', response_model=schema.ResponsePost)
-def get_post(id: int, db: Session = Depends(get_db)):
+def get_post(id: int, db: Session = Depends(get_db), current_user : id = Depends(oauth2.get_current_user)):
     # cursor.execute(""" SELECT * FROM "posts" WHERE "id" = %s """, (id,))
     # post = cursor.fetchone()
     post = db.query(model.Post).filter(model.Post.id == id).first()
