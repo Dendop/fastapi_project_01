@@ -13,7 +13,7 @@ router = APIRouter(
 def create_user(user:schema.UserCreate, db: Session = Depends(get_db)):
     hashed_password = utils.hash(user.password)
     user.password = hashed_password
-    new_user = model.User(**user.dict()) #Unpacking Pynantic model to create DB model
+    new_user = model.User(**user.model_dump()) #Unpacking Pynantic model to create DB model
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
