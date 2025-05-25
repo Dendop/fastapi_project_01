@@ -20,15 +20,4 @@ SQLALCHEMY_DATABASE_URL = f'postgresql://{db_user}:{db_password_encoded}@{db_hos
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
-testing_SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-Base.metadata.create_all(bind=engine)
-
-def override_get_db():
-    db = testing_SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-        
-app.dependency_overrides[get_db] = override_get_db
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
