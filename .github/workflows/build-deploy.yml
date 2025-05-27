@@ -4,7 +4,15 @@ on: [push, pull_request]
 
 jobs:
     job1:
-        
+        environment: testing
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ SECRETS.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          SECRET_KEY_TOKEN: ${{ secrets.SECRET_KEY_TOKEN }}
+          ALGORITHM: ${{ secrets.ALGORITHM }}
+          PYTHONPATH: ${{ secrets.PYTHONPATH }}
         runs-on: ubuntu-latest
         steps:
             - name: pulling git repo
