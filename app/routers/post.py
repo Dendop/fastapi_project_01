@@ -54,7 +54,7 @@ def get_post(id: int, db: Session = Depends(get_db), current_user : id = Depends
 @router.delete('/{id}')
 def delete_post(id: int, db: Session = Depends(get_db), current_user : int = Depends(oauth2.get_current_user)):
     
-    post = db.query(model.Post).efiltr(model.Post.id == id).first()
+    post = db.query(model.Post).filter(model.Post.id == id).first()
     if post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id:{id} was not found")

@@ -36,6 +36,19 @@ def test_user(client):
     new_user["password"] = user_data["password"]
     print(new_user)
     return new_user
+
+@pytest.fixture()
+def test_user2(client):
+    user_data = {"email":"sonicrabbit@gmail.com", "password": "password9999"}
+    res = client.post("/users/", json=user_data)
+    
+    assert res.status_code == 201
+    new_user = res.json()
+    new_user["password"] = user_data["password"]
+    print(new_user)
+    return new_user
+
+
      
 @pytest.fixture()
 def token(test_user):
@@ -47,7 +60,7 @@ def authorized_client(client,token):
     return client
 
 @pytest.fixture()
-def test_posts(test_user,session):
+def test_posts(test_user,test_user2,session):
     post_data = [
         {
             "title":"my favourite chair",
@@ -63,6 +76,11 @@ def test_posts(test_user,session):
             "title": "I saw it",
             "content": "my father was executed in the king's landing",
             "user_id": test_user["id"]
+        },
+        {
+            "title": "I am contribunting",
+            "content": "This is my first post",
+            "user_id": test_user2["id"]
         }
     ]
     def create_post_model(post): #function to convert dict into Post model
@@ -73,5 +91,6 @@ def test_posts(test_user,session):
     session.add_all(posts)
     session.commit()
     posts = session.query(model.Post).all()
-    print(f"Posts in database {posts}")
+    #print(f"Posts in database {posts}")
     return posts
+
