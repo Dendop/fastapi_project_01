@@ -10,7 +10,7 @@ from app.database import get_db,Base
 
 load_dotenv()
 db_host = os.getenv('DB_HOST')
-db_name = os.getenv('DB_NAME') + '_test'
+db_name = os.getenv('DB_NAME') #+ '_test'
 db_user = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASSWORD')
 db_password_encoded = quote_plus(db_password)
