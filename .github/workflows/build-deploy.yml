@@ -8,5 +8,11 @@ jobs:
         steps:
             - name: pulling git repo
               uses: actions/checkout@v2
-            - name: say hi to Dendo
-              run: echo "Hello Dendo"
+            - name: Install python version 3.9
+              uses: actions/setup python@v2
+              with:
+                python-version: "3.9"
+            - name: update pip
+              run: python -m pip insta;; --upgrade pi
+            - name: installing dependencies
+              run: pip install -r requirements.txt
