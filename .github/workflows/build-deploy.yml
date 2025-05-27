@@ -7,7 +7,7 @@ jobs:
         environment: testing
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
-          DB_NAME: ${{ SECRETS.DB_NAME }}
+          DB_NAME: ${{ secrets.DB_NAME }}
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           SECRET_KEY_TOKEN: ${{ secrets.SECRET_KEY_TOKEN }}
