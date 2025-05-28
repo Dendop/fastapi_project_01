@@ -80,4 +80,4 @@ jobs:
             script: |
               cd app/src && \
               git pull && \
-              echo ${{ secrets.PROD_U_PASSWORD }} | sudo -S systemctl restart fastapidemo        
+              echo '${{ secrets.PROD_U_PASSWORD }}' | sudo -S systemctl restart fastapidemo        
