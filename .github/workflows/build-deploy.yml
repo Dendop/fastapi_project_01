@@ -77,7 +77,7 @@ jobs:
             host: ${{ secrets.PROD_U_HOST }}
             username: ${{ secrets.PROD_U_USERNAME }}
             password: ${{ secrets.PROD_U_PASSWORD }}
-            script:
-              cd app/src
-              git pull
-              sudo ${{ secrets.PROD_U_PASSWORD }} | sudo -S systemctl restart fastapidemo        
+            script: |
+              cd app/src && \
+              git pull && \
+              echo ${{ secrets.PROD_U_PASSWORD }} | sudo -S systemctl restart fastapidemo        
