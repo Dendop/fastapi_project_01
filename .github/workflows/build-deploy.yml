@@ -79,5 +79,6 @@ jobs:
             password: ${{ secrets.PROD_U_PASSWORD }}
             script: |
               cd app/src && \
-              git pull && \
+              git fetch origin && \
+              git reset --hard origin/main && \
               echo '${{ secrets.PROD_U_PASSWORD }}' | sudo -S systemctl restart fastapidemo        
